@@ -31,6 +31,10 @@ public class CommandManager {
 
             commandMap.register(plugin.getName(), bukkitCommand);
 
+            if (MinecraftVersion.isAtLeastVersion(MinecraftVersion.MC1_13_R1)) {
+                Bukkit.getServer().getClass().getMethod("syncCommands").invoke(Bukkit.getServer());
+            }
+
             this.pluginCommands.put(command, bukkitCommand);
         } catch (Exception e) {
             e.printStackTrace();
