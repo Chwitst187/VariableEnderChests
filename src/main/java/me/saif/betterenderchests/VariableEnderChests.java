@@ -161,8 +161,12 @@ public final class VariableEnderChests extends JavaPlugin {
 
     private void setupHooks() {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            this.enderChestHook = new PAPIEnderChestHook(this);
-            this.enderChestHook.register();
+            try {
+                this.enderChestHook = new PAPIEnderChestHook(this);
+                this.enderChestHook.register();
+            } catch (NoClassDefFoundError ex) {
+                getLogger().warning("Found PlaceholderAPI but could not load its classes. Skipping PlaceholderAPI hook.");
+            }
         }
 
         new InteractiveChatHook(this);

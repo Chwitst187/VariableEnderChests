@@ -24,7 +24,7 @@ public class MySQLDatabase extends SQLDatabase {
         dataSource.setJdbcUrl("jdbc:mysql://" + host + ":" + port + "/" + database);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setPoolName("[VariableEnderChests-MySQL]");
         dataSource.setConnectionTestQuery("SELECT 1");
         try (Connection connection = dataSource.getConnection();
