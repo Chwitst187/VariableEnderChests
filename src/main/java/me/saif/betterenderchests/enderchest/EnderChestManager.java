@@ -64,8 +64,8 @@ public class EnderChestManager extends Manager<VariableEnderChests> implements L
             OPEN_SOUND = "BLOCK_ENDERCHEST_OPEN";
             CLOSE_SOUND = "BLOCK_ENDERCHEST_CLOSE";
         } else {
-            OPEN_SOUND = "BLOCK_ENDER_CHEST_OPEN";
-            CLOSE_SOUND = "BLOCK_ENDER_CHEST_CLOSE";
+            OPEN_SOUND = "minecraft:block.ender_chest.open";
+            CLOSE_SOUND = "minecraft:block.ender_chest.close";
         }
 
         //getting config values
