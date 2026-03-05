@@ -11,7 +11,6 @@ import me.saif.betterenderchests.utils.CaselessString;
 import me.saif.betterenderchests.utils.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
@@ -47,8 +46,8 @@ public class EnderChestManager extends Manager<VariableEnderChests> implements L
     private int defaultRows;
     private final boolean convert;
 
-    private final Sound OPEN_SOUND;
-    private final Sound CLOSE_SOUND;
+    private final String OPEN_SOUND;
+    private final String CLOSE_SOUND;
 
     private final Set<Material> blacklist = new HashSet<>();
 
@@ -59,14 +58,14 @@ public class EnderChestManager extends Manager<VariableEnderChests> implements L
 
         //load the correct sound depending on verison
         if (MinecraftVersion.getVersion() == MinecraftVersion.MC1_8_R3) {
-            OPEN_SOUND = Sound.valueOf("CHEST_OPEN");
-            CLOSE_SOUND = Sound.valueOf("CHEST_CLOSE");
+            OPEN_SOUND = "CHEST_OPEN";
+            CLOSE_SOUND = "CHEST_CLOSE";
         } else if (!MinecraftVersion.isNewerThan(MinecraftVersion.MC1_12_R1)) {
-            OPEN_SOUND = Sound.valueOf("BLOCK_ENDERCHEST_OPEN");
-            CLOSE_SOUND = Sound.valueOf("BLOCK_ENDERCHEST_CLOSE");
+            OPEN_SOUND = "BLOCK_ENDERCHEST_OPEN";
+            CLOSE_SOUND = "BLOCK_ENDERCHEST_CLOSE";
         } else {
-            OPEN_SOUND = Sound.valueOf("BLOCK_ENDER_CHEST_OPEN");
-            CLOSE_SOUND = Sound.valueOf("BLOCK_ENDER_CHEST_CLOSE");
+            OPEN_SOUND = "BLOCK_ENDER_CHEST_OPEN";
+            CLOSE_SOUND = "BLOCK_ENDER_CHEST_CLOSE";
         }
 
         //getting config values
