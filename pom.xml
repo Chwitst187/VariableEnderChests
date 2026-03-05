@@ -167,7 +167,6 @@
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>3.5.7</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>de.tr7zw</groupId>
