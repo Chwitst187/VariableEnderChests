@@ -8,3 +8,10 @@ softdepend:
   - PlaceholderAPI
   - ShowItem
   - InteractiveChat
+
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
+      join-classpath: true

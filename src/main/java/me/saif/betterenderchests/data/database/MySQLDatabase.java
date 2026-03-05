@@ -21,10 +21,10 @@ public class MySQLDatabase extends SQLDatabase {
         this.port = port;
         this.username = username;
         this.password = password;
-        dataSource.setJdbcUrl("jdbc:mysql://" + host + ":" + port + "/" + database);
+        dataSource.setJdbcUrl("jdbc:mariadb://" + host + ":" + port + "/" + database);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         dataSource.setPoolName("[VariableEnderChests-MySQL]");
         dataSource.setConnectionTestQuery("SELECT 1");
         try (Connection connection = dataSource.getConnection();
