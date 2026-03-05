@@ -1,5 +1,6 @@
 package me.saif.betterenderchests.command.commands;
 
+import me.saif.betterenderchests.utils.FoliaScheduler;
 import me.saif.betterenderchests.VariableEnderChests;
 import me.saif.betterenderchests.command.PluginCommand;
 import me.saif.betterenderchests.converters.Converter;
@@ -71,7 +72,7 @@ public class ConversionCommand extends PluginCommand {
 
         if (this.confirmMap.get(sender) != converter) {
             this.confirmMap.put(sender, converter);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> confirmMap.remove(sender), 100L);
+            FoliaScheduler.runSyncLater(plugin, () -> confirmMap.remove(sender), 100L);
             messenger.sendMessage(sender, MessageKey.CONFIRM_CONVERTER);
             return;
         }

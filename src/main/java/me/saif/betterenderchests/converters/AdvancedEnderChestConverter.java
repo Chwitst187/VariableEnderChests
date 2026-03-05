@@ -1,5 +1,6 @@
 package me.saif.betterenderchests.converters;
 
+import me.saif.betterenderchests.utils.FoliaScheduler;
 import me.saif.betterenderchests.VariableEnderChests;
 import me.saif.betterenderchests.data.DataManager;
 import me.saif.betterenderchests.enderchest.EnderChestSnapshot;
@@ -73,7 +74,7 @@ public class AdvancedEnderChestConverter extends Converter {
         this.plugin.getLogger().info("Migration Complete!");
         this.plugin.getLogger().info("Please restart your server!");
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin));
+        FoliaScheduler.runSyncLater(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin), 1L);
         return true;
     }
 
