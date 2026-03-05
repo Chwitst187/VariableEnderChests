@@ -1,5 +1,6 @@
 package me.saif.betterenderchests.converters;
 
+import me.saif.betterenderchests.utils.FoliaScheduler;
 import de.tr7zw.changeme.nbtapi.*;
 import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT;
 import me.saif.betterenderchests.VariableEnderChests;
@@ -59,7 +60,7 @@ public class VanillaConverter extends Converter {
         this.plugin.getLogger().info("Migration Complete!");
         this.plugin.getLogger().info("Please restart your server!");
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin));
+        FoliaScheduler.runSyncLater(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin), 1L);
         return true;
     }
 

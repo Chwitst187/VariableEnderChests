@@ -1,5 +1,6 @@
 package me.saif.betterenderchests.command.commands;
 
+import me.saif.betterenderchests.utils.FoliaScheduler;
 import me.saif.betterenderchests.VariableEnderChests;
 import me.saif.betterenderchests.command.PluginCommand;
 import me.saif.betterenderchests.enderchest.EnderChest;
@@ -93,7 +94,7 @@ public class ClearEnderChestCommand extends PluginCommand {
         }
         this.toClear.put(senderUUID, enderChest);
         messenger.sendMessage(sender, MessageKey.CONFIRM_CLEAR_ENDERCHEST, enderChestPlaceholder.getResult(enderChest));
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, () -> this.toClear.remove(senderUUID), 100L);
+        FoliaScheduler.runSyncLater(this.plugin, () -> this.toClear.remove(senderUUID), 100L);
     }
 
 }

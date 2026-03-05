@@ -1,5 +1,6 @@
 package me.saif.betterenderchests.converters;
 
+import me.saif.betterenderchests.utils.FoliaScheduler;
 import me.saif.betterenderchests.VariableEnderChests;
 import me.saif.betterenderchests.data.DataManager;
 import me.saif.betterenderchests.data.MySQLDataManager;
@@ -74,7 +75,7 @@ public class SQLiteMySQLConverter extends Converter {
             this.plugin.getConfig().set("database.mysql", true);
             this.plugin.saveConfig();
 
-            Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin));
+            FoliaScheduler.runSyncLater(this.plugin, () -> Bukkit.getPluginManager().disablePlugin(this.plugin), 1L);
             return true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
