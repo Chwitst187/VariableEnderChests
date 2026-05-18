@@ -179,11 +179,5 @@
             <version>1.7.3</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.loohp</groupId>
-            <artifactId>InteractiveChat</artifactId>
-            <version>4.2.12.0</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 </project>
