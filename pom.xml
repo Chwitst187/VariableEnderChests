@@ -6,7 +6,7 @@
 
     <groupId>me.saif</groupId>
     <artifactId>VariableEnderChests</artifactId>
-    <version>1.11.6.0</version>
+    <version>1.11.7.0</version>
     <packaging>jar</packaging>
 
     <name>BetterEnderChests</name>
@@ -171,7 +171,7 @@
         <dependency>
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api</artifactId>
-            <version>2.15.5</version>
+            <version>2.15.7</version>
         </dependency>
         <dependency>
             <groupId>de.themoep.showitem</groupId>
