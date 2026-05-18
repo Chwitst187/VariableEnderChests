@@ -15,6 +15,7 @@ public class EnderChest implements InventoryHolder {
 
     public static final Map<Integer, String> INVENTORY_NAMES;
     public static final String PREFIX = "VECEnderChest";
+    public static final String RETRIEVAL_PREFIX = "VECEnderChestRetrieval";
 
     static {
         Map<Integer, String> temp = new HashMap<>();
@@ -32,6 +33,7 @@ public class EnderChest implements InventoryHolder {
     private final String name;
     private ItemStack[] contents;
     private Inventory inventory;
+    private EnderChestRetreiver retriever;
     private final Map<Integer, String> inventoryNames = new HashMap<>();
     private int lastNumRows = 6;
 
@@ -82,12 +84,16 @@ public class EnderChest implements InventoryHolder {
     }
 
     public void clearContents() {
+        updateRetrieverContentsArray();
         this.contents = new ItemStack[54];
+        this.retriever = null;
         this.populateInventory();
     }
 
     public void setContents(ItemStack[] contents) {
+        updateRetrieverContentsArray();
         this.contents = Arrays.copyOf(contents, 54);
+        this.retriever = null;
         this.populateInventory();
     }
 
@@ -111,6 +117,7 @@ public class EnderChest implements InventoryHolder {
 
     public ItemStack[] getContents() {
         updateContentsArray();
+        updateRetrieverContentsArray();
         return Arrays.copyOf(contents, 54);
     }
 
@@ -119,6 +126,19 @@ public class EnderChest implements InventoryHolder {
         for (int i = 0; i < inventory.getSize(); i++) {
             this.contents[i] = inventory.getItem(i);
         }
+    }
+
+    private void updateRetrieverContentsArray() {
+        if (this.retriever != null) {
+            this.retriever.updateContentsArray();
+        }
+    }
+
+    public EnderChestRetreiver getRetriever() {
+        updateContentsArray();
+        updateRetrieverContentsArray();
+        this.retriever = new EnderChestRetreiver(this);
+        return this.retriever;
     }
 
     public int getLastNumRows() {
@@ -135,5 +155,40 @@ public class EnderChest implements InventoryHolder {
 
     public EnderChestSnapshot snapshot() {
         return new EnderChestSnapshot(this);
+    }
+
+    public static class EnderChestRetreiver implements InventoryHolder {
+
+        private final EnderChest owner;
+        private final Inventory inventory;
+        private final int startSlot;
+
+        private EnderChestRetreiver(EnderChest owner) {
+            this.owner = owner;
+            this.startSlot = owner.lastNumRows * 9;
+            this.inventory = Bukkit.createInventory(this, 54 - this.startSlot, RETRIEVAL_PREFIX + ";" + owner.name);
+            populateInventory();
+        }
+
+        @Override
+        public Inventory getInventory() {
+            return inventory;
+        }
+
+        public EnderChest getOwner() {
+            return owner;
+        }
+
+        private void populateInventory() {
+            for (int i = 0; i < inventory.getSize(); i++) {
+                inventory.setItem(i, owner.contents[startSlot + i]);
+            }
+        }
+
+        private void updateContentsArray() {
+            for (int i = 0; i < inventory.getSize(); i++) {
+                owner.contents[startSlot + i] = inventory.getItem(i);
+            }
+        }
     }
 }
